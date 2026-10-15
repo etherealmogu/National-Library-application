@@ -1,0 +1,158 @@
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.Title = "Contact - National Library System";
+}
+
+<!-- Page Header -->
+<div class="row" style="margin-bottom: 1.5rem;">
+    <div class="col s12">
+        <h4 style="font-weight: 700; color: #1a237e; display: flex; align-items: center; gap: 12px; margin: 0 0 6px 0;">
+            <i class="material-icons" style="font-size: 2.4rem;">contact_mail</i>
+            Contact & Support
+        </h4>
+        <p class="grey-text text-darken-1" style="font-size: 1rem; margin: 0;">
+            Have questions or need assistance? Reach out to our library administration team.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Left Column: Official Contact & Office Information -->
+    <div class="col s12 m5">
+        <div class="card-custom">
+            <div class="card-header-custom">
+                <h5>
+                    <i class="material-icons">business</i>
+                    Office Information
+                </h5>
+            </div>
+            <div class="card-content-custom">
+                <!-- Contact Person -->
+                <div style="margin-bottom: 1.5rem;">
+                    <span class="grey-text text-darken-1" style="font-size: 0.85rem; text-transform: uppercase; font-weight: 600;">
+                        Chief Administrator
+                    </span>
+                    <h6 style="margin: 4px 0 0 0; font-weight: 600; color: #1a237e; display: flex; align-items: center; gap: 6px;">
+                        <i class="material-icons tiny">person</i> Yiran Zhou
+                    </h6>
+                    <span class="grey-text" style="font-size: 0.85rem;">Head of Library Information Services</span>
+                </div>
+
+                <!-- Address -->
+                <div style="margin-bottom: 1.5rem;">
+                    <span class="grey-text text-darken-1" style="font-size: 0.85rem; text-transform: uppercase; font-weight: 600;">
+                        Main Library Location
+                    </span>
+                    <p style="margin: 4px 0 0 0; color: #37474f; font-size: 0.95rem; line-height: 1.5; display: flex; gap: 8px;">
+                        <i class="material-icons tiny" style="margin-top: 2px;">location_on</i>
+                        National Library Building, T.M. Kalaw Ave, Ermita, Manila, 1000 Metro Manila, Philippines
+                    </p>
+                </div>
+
+                <!-- Phone Numbers -->
+                <div style="margin-bottom: 1.5rem;">
+                    <span class="grey-text text-darken-1" style="font-size: 0.85rem; text-transform: uppercase; font-weight: 600;">
+                        Telephone & Hotline
+                    </span>
+                    <p style="margin: 4px 0 0 0; color: #37474f; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="material-icons tiny">phone</i> +63 (02) 8524-2329
+                    </p>
+                    <p style="margin: 4px 0 0 0; color: #37474f; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="material-icons tiny">smartphone</i> +63 917 123 4567 (Circulation Desk)
+                    </p>
+                </div>
+
+                <!-- Email Addresses -->
+                <div style="margin-bottom: 1.5rem;">
+                    <span class="grey-text text-darken-1" style="font-size: 0.85rem; text-transform: uppercase; font-weight: 600;">
+                        Electronic Mail
+                    </span>
+                    <p style="margin: 4px 0 0 0; color: #37474f; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="material-icons tiny">email</i> support@nationallibrary.gov.ph
+                    </p>
+                    <p style="margin: 4px 0 0 0; color: #37474f; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="material-icons tiny">help_outline</i> inquiries@nationallibrary.gov.ph
+                    </p>
+                </div>
+
+                <!-- Office Hours -->
+                <div style="margin-bottom: 1.5rem;">
+                    <span class="grey-text text-darken-1" style="font-size: 0.85rem; text-transform: uppercase; font-weight: 600;">
+                        Operating Hours
+                    </span>
+                    <p style="margin: 4px 0 0 0; color: #37474f; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="material-icons tiny">schedule</i> Monday to Friday: 8:00 AM to 5:00 PM (PST)
+                    </p>
+                </div>
+
+                <!-- Social Media -->
+                <div>
+                    <span class="grey-text text-darken-1" style="font-size: 0.85rem; text-transform: uppercase; font-weight: 600;">
+                        Social Media Channels
+                    </span>
+                    <div style="margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap;">
+                        <span class="chip blue darken-3 white-text" style="font-size: 0.8rem; font-weight: 500;">
+                            facebook.com/NationalLibraryPH
+                        </span>
+                        <span class="chip light-blue darken-1 white-text" style="font-size: 0.8rem; font-weight: 500;">
+                            twitter.com/NatLibraryPH
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column: Interactive Inquiry Message Form -->
+    <div class="col s12 m7">
+        <div class="card-custom">
+            <div class="card-header-custom">
+                <h5>
+                    <i class="material-icons">send</i>
+                    Send an Inquiry or Message
+                </h5>
+                <span class="chip teal lighten-5 teal-text text-darken-3" style="font-weight: 500;">Online Form</span>
+            </div>
+            <div class="card-content-custom">
+                <form ng-submit="contactSubmitFunc()">
+                    <div class="row" style="margin-bottom: 0;">
+                        <!-- Name -->
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix grey-text text-darken-2">person</i>
+                            <input id="contactName" type="text" class="validate" ng-model="contactName" placeholder="e.g. Maria Santos" maxlength="50" required />
+                            <label for="contactName" class="active">Your Full Name *</label>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix grey-text text-darken-2">email</i>
+                            <input id="contactEmail" type="email" class="validate" ng-model="contactEmail" placeholder="e.g. maria@example.com" maxlength="50" required />
+                            <label for="contactEmail" class="active">Your Email Address *</label>
+                        </div>
+
+                        <!-- Subject -->
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix grey-text text-darken-2">subject</i>
+                            <input id="contactSubject" type="text" class="validate" ng-model="contactSubject" placeholder="e.g. Question regarding book return schedule" maxlength="50" />
+                            <label for="contactSubject" class="active">Subject</label>
+                        </div>
+
+                        <!-- Message -->
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix grey-text text-darken-2">message</i>
+                            <textarea id="contactMessage" class="materialize-textarea" ng-model="contactMessage" placeholder="Write your inquiry or message here..." rows="5" style="min-height: 120px;" required></textarea>
+                            <label for="contactMessage" class="active">Message Content *</label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="col s12" style="margin-top: 1rem;">
+                            <button type="submit" class="waves-effect waves-light btn-large indigo darken-3" style="border-radius: 8px; font-weight: 600; width: 100%;">
+                                <i class="material-icons left">send</i>
+                                Submit Message to Library Admin
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+

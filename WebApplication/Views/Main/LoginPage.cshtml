@@ -1,0 +1,49 @@
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.Title = "Login - National Library System";
+}
+
+<div class="row" style="margin-top: 2rem;">
+    <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card-custom">
+            <div class="card-header-custom" style="background: linear-gradient(135deg, #1a237e 0%, #283593 100%); color: #ffffff; padding: 1.5rem 2rem;">
+                <div>
+                    <h5 style="color: #ffffff; margin: 0; font-weight: 600; display: flex; align-items: center; gap: 10px;">
+                        <i class="material-icons" style="font-size: 2rem;">account_circle</i>
+                        Portal Authentication
+                    </h5>
+                    <p style="margin: 4px 0 0 0; color: #c5cae9; font-size: 0.9rem;">
+                        Sign in to access library & employee management
+                    </p>
+                </div>
+            </div>
+
+            <div class="card-content-custom" style="padding: 2rem;">
+                <form ng-submit="loginFunc()">
+                    <!-- Username / Email -->
+                    <div class="input-field" style="margin-bottom: 1.5rem;">
+                        <i class="material-icons prefix grey-text text-darken-2">person</i>
+                        <input id="loginUsername" type="text" class="validate" ng-model="loginUsername" placeholder="Enter your username or email" maxlength="50" required />
+                        <label for="loginUsername" class="active">Username or Email *</label>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="input-field" style="margin-bottom: 1.5rem;">
+                        <i class="material-icons prefix grey-text text-darken-2">lock</i>
+                        <input id="loginPassword" type="password" class="validate" ng-model="loginPassword" placeholder="Enter your secret password" maxlength="50" required />
+                        <label for="loginPassword" class="active">Password *</label>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div style="margin-top: 2rem;">
+                        <button type="submit" class="waves-effect waves-light btn-large indigo darken-3" style="width: 100%; border-radius: 8px; font-weight: 600;">
+                            <i class="material-icons left">login</i>
+                            Log In to System
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

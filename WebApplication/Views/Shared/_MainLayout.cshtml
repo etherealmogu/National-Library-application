@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>National Library System</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6fa;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-library {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #0d47a1 100%);
+            box-shadow: 0 4px 20px rgba(26, 35, 126, 0.25);
+            padding: 0 1.5rem;
+        }
+
+        .navbar-library .brand-logo {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.4rem;
+            letter-spacing: 0.5px;
+        }
+
+        .navbar-library .brand-logo i {
+            margin-right: 12px;
+            font-size: 2rem;
+        }
+
+        .main-container {
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card-custom {
+            border-radius: 12px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.07);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            background: #ffffff;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .card-header-custom {
+            background: #ffffff;
+            border-bottom: 1px solid #edf2f7;
+            padding: 1.25rem 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-header-custom h5 {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1a237e;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-content-custom {
+            padding: 1.75rem;
+        }
+
+        /* Status Badges */
+        .chip-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .chip-borrowed {
+            background-color: #fff3e0;
+            color: #e65100;
+            border: 1px solid #ffe0b2;
+        }
+
+        .chip-returned {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+
+        /* Enhanced Action Buttons in Table */
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 0 14px;
+            height: 34px;
+            line-height: 34px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+        }
+
+        .btn-action-edit {
+            background-color: #ff9800;
+            color: #ffffff;
+            margin-right: 6px;
+        }
+
+        .btn-action-edit:hover {
+            background-color: #f57c00;
+        }
+
+        .btn-action-delete {
+            background-color: #f44336;
+            color: #ffffff;
+        }
+
+        .btn-action-delete:hover {
+            background-color: #d32f2f;
+        }
+
+        /* Modern Table */
+        .table-custom {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+        }
+
+        .table-custom th {
+            background-color: #f8fafc;
+            color: #475569;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            padding: 14px 18px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .table-custom td {
+            padding: 14px 18px;
+            border-bottom: 1px solid #edf2f7;
+            font-size: 0.95rem;
+            color: #334155;
+            vertical-align: middle;
+        }
+
+        .table-custom tbody tr:hover {
+            background-color: #f8fafc;
+        }
+
+        /* Editing Banner */
+        .edit-mode-banner {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border: 1px solid #ffe082;
+            border-radius: 8px;
+            padding: 10px 16px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #b78103;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body ng-app="NationalLibrarySystem" ng-controller="NationalLibrarySystemController">
+    
+    <!-- Top Navigation Bar -->
+    <nav class="navbar-library" role="navigation">
+        <div class="nav-wrapper">
+            <a href="/Main/Index" class="brand-logo">
+                <i class="material-icons">local_library</i>
+                National Library System
+            </a>
+            <!-- Mobile Menu Trigger -->
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+            <!-- Desktop Navigation Links -->
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/Main/Index"><i class="material-icons left">home</i>Home</a></li>
+                <li><a href="/Main/RegistrationPage"><i class="material-icons left">person_add</i>Registration</a></li>
+                <li><a href="/Main/AboutPage"><i class="material-icons left">info</i>About</a></li>
+                <li><a href="/Main/ContactPage"><i class="material-icons left">mail</i>Contact</a></li>
+                <li><a href="/Main/LoginPage" class="waves-effect waves-light btn-small amber darken-3" style="border-radius: 20px; font-weight: 600; padding: 0 16px;"><i class="material-icons left">account_circle</i>Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidenav Menu -->
+    <ul class="sidenav" id="mobile-nav">
+        <li>
+            <div class="user-view" style="background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%); padding: 24px 16px;">
+                <i class="material-icons white-text" style="font-size: 3rem;">local_library</i>
+                <h6 class="white-text" style="font-weight: 600; margin-top: 8px;">National Library System</h6>
+                <p class="white-text" style="font-size: 0.85rem; margin: 0; opacity: 0.85;">Employee & Borrower Portal</p>
+            </div>
+        </li>
+        <li><a href="/Main/Index"><i class="material-icons">home</i>Home</a></li>
+        <li><a href="/Main/RegistrationPage"><i class="material-icons">person_add</i>Registration</a></li>
+        <li><a href="/Main/AboutPage"><i class="material-icons">info</i>About</a></li>
+        <li><a href="/Main/ContactPage"><i class="material-icons">mail</i>Contact</a></li>
+        <li class="divider"></li>
+        <li><a href="/Main/LoginPage"><i class="material-icons">account_circle</i>Login</a></li>
+    </ul>
+
+    <!-- Main Content Container -->
+    <main class="container main-container">
+        @RenderBody()
+    </main>
+
+    <!-- Global Footer -->
+    <footer style="background-color: #1a237e; color: #ffffff; padding: 2.5rem 0 1.5rem 0; margin-top: 4rem;">
+        <div class="container">
+            <div class="row" style="margin-bottom: 1.5rem;">
+                <div class="col s12 m6">
+                    <h5 style="font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                        <i class="material-icons">local_library</i> National Library System
+                    </h5>
+                    <p style="color: #c5cae9; font-size: 0.95rem; line-height: 1.6;">
+                        A comprehensive management system for employee records, library cataloging, book borrowing, and returned circulation.
+                    </p>
+                </div>
+                <div class="col s12 m6 right-align">
+                    <h6 style="font-weight: 600; color: #ffffff; margin-bottom: 1rem;">Quick Navigation</h6>
+                    <div style="display: flex; justify-content: flex-end; gap: 16px; flex-wrap: wrap;">
+                        <a href="/Main/Index" style="color: #c5cae9; text-decoration: underline;">Home</a>
+                        <a href="/Main/RegistrationPage" style="color: #c5cae9; text-decoration: underline;">Registration</a>
+                        <a href="/Main/AboutPage" style="color: #c5cae9; text-decoration: underline;">About</a>
+                        <a href="/Main/ContactPage" style="color: #c5cae9; text-decoration: underline;">Contact</a>
+                        <a href="/Main/LoginPage" style="color: #ffd54f; font-weight: 600;">Login</a>
+                    </div>
+                </div>
+            </div>
+            <div class="divider" style="background-color: rgba(255,255,255,0.15); margin-bottom: 1rem;"></div>
+            <div class="row" style="margin: 0; font-size: 0.85rem; color: #9fa8da;">
+                <div class="col s12 m6">
+                    &copy; @DateTime.Now.Year National Library System. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/HolyScripts/Module.js"></script>
+    <script src="~/Scripts/HolyScripts/Service.js"></script>
+    <script src="~/Scripts/HolyScripts/Controller.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.sidenav');
+            M.Sidenav.init(elems);
+        });
+    </script>
+</body>
+</html>

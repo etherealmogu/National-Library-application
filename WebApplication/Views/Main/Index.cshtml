@@ -1,0 +1,137 @@
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.Title = "Home - National Library System";
+}
+
+<!-- Hero Welcome Section  --> 
+<div class="row" style="margin-top: 1rem;">
+    <div class="col s12">
+        <div class="card-custom" style="background: linear-gradient(135deg, #1a237e 0%, #283593 60%, #0d47a1 100%); color: #ffffff; padding: 2.5rem;">
+            <div class="row" style="margin: 0; display: flex; align-items: center; flex-wrap: wrap;">
+                <div class="col s12 m9">
+                    <span class="chip amber darken-3 white-text" style="font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.8px; margin-bottom: 12px;">
+                        <i class="material-icons tiny left">campaign</i> ANNOUNCEMENT
+                    </span>
+                    <!-- Welcome message originating directly from C# Controller ViewBag -->
+                    <h3 style="font-weight: 700; margin: 0 0 10px 0; font-size: 2.2rem; line-height: 1.2;">
+                        @ViewBag.WelcomeMessage
+                    </h3>
+                    <p style="font-size: 1.1rem; color: #e8eaf6; margin: 0; line-height: 1.6; max-width: 750px;">
+                        @ViewBag.Subtitle
+                    </p>
+                </div>
+                <div class="col s12 m3 center-align hide-on-small-only">
+                    <i class="material-icons" style="font-size: 6.5rem; color: rgba(255, 255, 255, 0.25);">local_library</i>
+                </div>
+            </div>
+            
+            <div class="divider" style="background-color: rgba(255, 255, 255, 0.15); margin: 2rem 0 1.5rem 0;"></div>
+            
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+                <a href="/Main/RegistrationPage" class="waves-effect waves-light btn-large amber darken-3" style="border-radius: 8px; font-weight: 600;">
+                    <i class="material-icons left">person_add</i>
+                    Add Employee / Borrower
+                </a>
+                <a href="/Main/AboutPage" class="waves-effect waves-light btn-large transparent" style="border: 1px solid rgba(255,255,255,0.4); border-radius: 8px;">
+                    <i class="material-icons left">info</i>
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- System Highlights / KPI Counters -->
+<div class="row">
+    <div class="col s12 m4">
+        <div class="card-custom" style="padding: 1.5rem; text-align: center;">
+            <i class="material-icons" style="font-size: 2.5rem; color: #1a237e;">group</i>
+            <h4 style="margin: 8px 0 4px 0; font-weight: 700; color: #1a237e;">{{userarray.length}}</h4>
+            <p class="grey-text text-darken-1" style="margin: 0; font-weight: 500;">Active Borrowers / Employees</p>
+        </div>
+    </div>
+    <div class="col s12 m4">
+        <div class="card-custom" style="padding: 1.5rem; text-align: center;">
+            <i class="material-icons" style="font-size: 2.5rem; color: #2e7d32;">check_circle</i>
+            <h4 style="margin: 8px 0 4px 0; font-weight: 700; color: #2e7d32;">Online</h4>
+            <p class="grey-text text-darken-1" style="margin: 0; font-weight: 500;">System Operational Status</p>
+        </div>
+    </div>
+    <div class="col s12 m4">
+        <div class="card-custom" style="padding: 1.5rem; text-align: center;">
+            <i class="material-icons" style="font-size: 2.5rem; color: #ff9800;">auto_stories</i>
+            <h4 style="margin: 8px 0 4px 0; font-weight: 700; color: #ff9800;">Circulation</h4>
+            <p class="grey-text text-darken-1" style="margin: 0; font-weight: 500;">Real-Time Book Tracking</p>
+        </div>
+    </div>
+</div>
+
+<!-- Three Main Feature Navigation Cards -->
+<div class="row">
+    <!-- Card 1: Registration -->
+    <div class="col s12 m4">
+        <div class="card-custom" style="display: flex; flex-direction: column; height: 100%;">
+            <div class="card-content-custom" style="flex: 1;">
+                <div style="width: 48px; height: 48px; border-radius: 8px; background-color: #e8eaf6; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                    <i class="material-icons indigo-text text-darken-4">person_add</i>
+                </div>
+                <h5 style="font-size: 1.2rem; font-weight: 600; color: #1a237e; margin: 0 0 10px 0;">
+                    Registration & Circulation
+                </h5>
+                <p class="grey-text text-darken-1" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Create new employees and library borrowers, assign books, and manage real-time borrowing or return statuses.
+                </p>
+            </div>
+            <div style="padding: 0 1.75rem 1.75rem 1.75rem;">
+                <a href="/Main/RegistrationPage" class="waves-effect waves-light btn indigo darken-2" style="width: 100%; border-radius: 6px;">
+                    <i class="material-icons left">arrow_forward</i> Open Registration
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 2: About Page -->
+    <div class="col s12 m4">
+        <div class="card-custom" style="display: flex; flex-direction: column; height: 100%;">
+            <div class="card-content-custom" style="flex: 1;">
+                <div style="width: 48px; height: 48px; border-radius: 8px; background-color: #e0f2f1; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                    <i class="material-icons teal-text text-darken-3">info</i>
+                </div>
+                <h5 style="font-size: 1.2rem; font-weight: 600; color: #1a237e; margin: 0 0 10px 0;">
+                    About the Platform
+                </h5>
+                <p class="grey-text text-darken-1" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Discover system architecture, developmental objectives, features, and the complete technology stack used.
+                </p>
+            </div>
+            <div style="padding: 0 1.75rem 1.75rem 1.75rem;">
+                <a href="/Main/AboutPage" class="waves-effect waves-light btn teal darken-2" style="width: 100%; border-radius: 6px;">
+                    <i class="material-icons left">explore</i> View About Info
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 3: Contact Page -->
+    <div class="col s12 m4">
+        <div class="card-custom" style="display: flex; flex-direction: column; height: 100%;">
+            <div class="card-content-custom" style="flex: 1;">
+                <div style="width: 48px; height: 48px; border-radius: 8px; background-color: #f3e5f5; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                    <i class="material-icons deep-purple-text text-darken-3">support_agent</i>
+                </div>
+                <h5 style="font-size: 1.2rem; font-weight: 600; color: #1a237e; margin: 0 0 10px 0;">
+                    Contact & Inquiries
+                </h5>
+                <p class="grey-text text-darken-1" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Connect with our administration team, find office branches, and submit inquiries or technical reports.
+                </p>
+            </div>
+            <div style="padding: 0 1.75rem 1.75rem 1.75rem;">
+                <a href="/Main/ContactPage" class="waves-effect waves-light btn deep-purple darken-2" style="width: 100%; border-radius: 6px;">
+                    <i class="material-icons left">contact_mail</i> Contact Support
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
